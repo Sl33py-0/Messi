@@ -1,7 +1,6 @@
 package menu;
 import java.util.Scanner;
 public class Men {
-	
 	static Scanner gato = new Scanner(System.in);
 	static int esp=0;
 	static String [] nombres = new String[50];
@@ -11,6 +10,7 @@ public class Men {
 	static int [] edades = new int[50];
 	static String [] direcciones = new String[50];
 	static boolean [] EC = new boolean[50];
+	static boolean [] fav = new boolean[50];
 	static int cont=0;
 	
 	public static void main(String[]args) {
@@ -18,7 +18,7 @@ public class Men {
 		int op, contra;
 		System.out.println("Ingrese la contraseña (4 numeros): ");
 		contra=gato.nextInt();
-		if (contra == 1002) { 
+		if (contra == 2404) { 
 		do {
 		System.out.println("- AGENDA -");
 		System.out.println("1- Ingreso");
@@ -40,8 +40,7 @@ public class Men {
 		case 4: menu.busqueda();
 		break;
 		case 5: menu.extra();
-		break;
-		}
+		break;}
 		
 		}while(op!=0);
 		}else {System.out.println("Contraseña Incorrecta");}
@@ -72,6 +71,9 @@ public class Men {
 
         System.out.print("¿Está casado? (true para casado, false para soltero): ");
         EC[cont] = gato.nextBoolean();
+        
+        System.out.print("Quieres agregar este contacto a favoritos? (true para si, false para no");
+        fav[cont] = gato.nextBoolean();
 
         cont++;
 
@@ -86,14 +88,14 @@ public class Men {
 		for (int i = 0; i < cont; i++) {
 			if (nombres[i].equalsIgnoreCase(eliminar)) {
 				encontrado = true;
-				for (int j = i; j < cont - 1; j++) {
-					nombres[j] = nombres[j + 1];
-					apellidos[j] = apellidos[j + 1];
-					telefonos[j] = telefonos[j + 1];
-					correos[j] = correos[j + 1];
-					edades[j] = edades[j + 1];
-					direcciones[j] = direcciones[j + 1];
-					EC[j] = EC[j + 1];
+				for (int x = i; x < cont - 1; x++) {
+					nombres[x] = nombres[x + 1];
+					apellidos[x] = apellidos[x + 1];
+					telefonos[x] = telefonos[x + 1];
+					correos[x] = correos[x + 1];
+					edades[x] = edades[x + 1];
+					direcciones[x] = direcciones[x + 1];
+					EC[x] = EC[x + 1];
 				}
 				cont--;  
 				System.out.println("El contacto ha sido eliminado.");
@@ -300,12 +302,7 @@ public class Men {
 	        if (!encontrado) {
 	        	System.out.println("- RESULTADO -");
 	            System.out.println("Edad no encontrada.");}
-	            break;
-	        
-	        
-        	        
-           
-	        
+	            break; 
 	        default: System.out.println("Opcion invalida");	
 		}
 		} while(op!=0);}
